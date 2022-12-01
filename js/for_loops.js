@@ -20,7 +20,7 @@ function showMultiplicationTable(input){
 // 199 is odd
 
 let numberRange = 0;
-function tenNumbers(input) {
+function tenNumbers() {
     for (let i = 0; i <= 10; i++) {
         numberRange = Math.floor((Math.random() * 200) + 20);
         if (numberRange % 2 === 0) {
@@ -43,6 +43,19 @@ function tenNumbers(input) {
 // 7777777
 // 88888888
 // 999999999
+
+function generatePyramid() {
+    let output = '';
+    for (let i = 1; i <= 9; i++) {
+        for (let j = 1; j <= i; j++) {
+            output += i;
+        }
+    console.log(output);
+    output = '';
+    }
+}
+
+
 
 // Create a for loop that uses console.log to create the output shown below.
 //
@@ -67,3 +80,11 @@ function tenNumbers(input) {
 // 15
 // 10
 // 5
+
+function oneHundredMinusFive(output){
+    output = 105
+    for(let i = 0; i < 20; i++){
+        console.log(output -= 5)
+    }
+}
+oneHundredMinusFive()
