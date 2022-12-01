@@ -22,7 +22,7 @@ function showMultiplicationTable(input){
 let numberRange = 0;
 function tenNumbers() {
     for (let i = 0; i <= 10; i++) {
-        numberRange = Math.floor((Math.random() * 200) + 20);
+        numberRange = Math.floor((Math.random() * (200 - 20)) + 20);
         if (numberRange % 2 === 0) {
             console.log(numberRange + " is even")
         } else {
@@ -30,6 +30,7 @@ function tenNumbers() {
         }
     }
 }
+tenNumbers()
 
 // Create a for loop that uses console.log to create the output shown below.
 //
@@ -83,8 +84,7 @@ function generatePyramid() {
 
 function oneHundredMinusFive(output){
     output = 105
-    for(let i = 0; i < 20; i++){
-        console.log(output -= 5)
+    for(let i = 0; i < 20; i -= 5){
+        console.log(output)
     }
 }
-oneHundredMinusFive()
