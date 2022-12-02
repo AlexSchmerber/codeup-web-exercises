@@ -1,4 +1,4 @@
-(function(){
+(function() {
     "use strict";
 
     /**
@@ -36,7 +36,8 @@
 
     for (let i = 0; i < fourNames.length; i++) {
         console.log(fourNames[i]);
-    };
+    }
+    ;
 
     /**
      * TODO:
@@ -61,35 +62,38 @@
      *  > last([1, 2, 3, 4, 5]) // return 5
      */
     let fiveNumbers = [1, 2, 3, 4, 5]
+
     function returnFirstItem(input) {
         return input[0]
     }
+
     function returnSecondItem(input) {
         return input[1]
     }
+
     function returnLastItem(input) {
         return input[input.length - 1]
     }
 
-console.log(returnLastItem(fiveNumbers));
-})();
-
+    console.log(returnLastItem(fiveNumbers));
 
 
 // Practice
-fruits = ["banana", "apple", "orange", "tomato"]
-for (let i = 0; i < fruits.length; i++) {
-    console.log(fruits[i]);
-}
-
-function arrayStringify(arr){
-    let result = "";
-    for (let i = 0; i < arr.length; i++) {
-        if(i > 0){
-            result += ", ";
-        }
-        result += fruits[i];
+    fruits = ["banana", "apple", "orange", "tomato"]
+    for (let i = 0; i < fruits.length; i++) {
+        console.log(fruits[i]);
     }
-    return result;
-}
-console.log("Stringify result is " + arrayStringify(fruits))
+
+    function arrayStringify(arr) {
+        let result = "";
+        for (let i = 0; i < arr.length; i++) {
+            if (i > 0) {
+                result += ", ";
+            }
+            result += fruits[i];
+        }
+        return result;
+    }
+
+    console.log("Stringify result is " + arrayStringify(fruits))
+}) ();
