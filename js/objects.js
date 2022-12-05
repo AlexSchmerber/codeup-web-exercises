@@ -53,7 +53,17 @@
         {name: 'Ryan', amount: 250},
         {name: 'George', amount: 320}
     ];
-    forEach(shoppers.name)
+    shoppers.forEach(function(shopper){
+        let shopperDiscount = shopper.amount * 0.12;
+        let totalAfterDiscount = shopper.amount - shopperDiscount;
+        if(shopper.amount <= 200){
+            console.log(shopper.name + " your cart total is $" + shopper.amount);
+        } else{
+            console.log(shopper.name + " your cart total before your discount is $" + shopper.amount);
+            console.log("Your total discounted amount is $" + shopperDiscount);
+            console.log("Your cart total after your discount is $" + totalAfterDiscount);
+        }
+    });
 
     /** TODO:
      * Create an array of objects that represent books and store it in a
@@ -67,6 +77,16 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
+    let booksInLibrary = [
+        {title: "The Leviathan", author: {firstName: "Thomas", lastName: "Hobbes"}},
+        {title: "The Prince", author: {firstName: "Niccolo", lastName: "Machiavelli"}},
+        {title: "Moby Dick", author: {firstName: "Herman", lastName: "Melville"}},
+        {title: "Project Hail Mary", author: {firstName: "Andy", lastName: "Weir"}},
+        {title: "To Kill a Mockingbird", author: {firstName: "Harper", lastName: "Lee"}}
+    ];
+    console.log(booksInLibrary[0].title);
+    console.log(booksInLibrary[0].author.firstName);
+    console.log(booksInLibrary[0].author.lastName);
 
     /**
      * TODO:
@@ -93,6 +113,12 @@
      *      ...
      */
 
+    booksInLibrary.forEach(function(Book){
+        console.log("Book # " + (booksInLibrary.indexOf(Book) + 1));
+        console.log("Title: " + Book.title);
+        console.log("Author: " + Book.author.firstName + " " + Book.author.lastName);
+    })
+
     /**
      * Bonus:
      * - Create a function named `createBook` that accepts a title and author
@@ -104,7 +130,13 @@
      *   `showBookInfo` function.
      */
 
-
+    function createBook(title, author) {
+        let authorFirstName = author.substring()
+        let authorLastName = author [1]
+        let bookObject = {bookTitle: title, bookAuthor: {firstName: authorFirstName, lastName: authorLastName}}
+        return console.log(bookObject)
+    };
+    createBook("The Leviathan", "Thomas Hobbes")
 
     // // Object practice
     //
