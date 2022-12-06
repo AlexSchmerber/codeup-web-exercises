@@ -77,16 +77,16 @@
      * > console.log(books[0].author.firstName) // "Douglas"
      * > console.log(books[0].author.lastName) // "Adams"
      */
-    let booksInLibrary = [
+    let books = [
         {title: "The Leviathan", author: {firstName: "Thomas", lastName: "Hobbes"}},
         {title: "The Prince", author: {firstName: "Niccolo", lastName: "Machiavelli"}},
         {title: "Moby Dick", author: {firstName: "Herman", lastName: "Melville"}},
         {title: "Project Hail Mary", author: {firstName: "Andy", lastName: "Weir"}},
         {title: "To Kill a Mockingbird", author: {firstName: "Harper", lastName: "Lee"}}
     ];
-    console.log(booksInLibrary[0].title);
-    console.log(booksInLibrary[0].author.firstName);
-    console.log(booksInLibrary[0].author.lastName);
+    console.log(books[0].title);
+    console.log(books[0].author.firstName);
+    console.log(books[0].author.lastName);
 
     /**
      * TODO:
@@ -113,11 +113,11 @@
      *      ...
      */
 
-    booksInLibrary.forEach(function(Book){
-        console.log("Book # " + (booksInLibrary.indexOf(Book) + 1));
-        console.log("Title: " + Book.title);
-        console.log("Author: " + Book.author.firstName + " " + Book.author.lastName);
-    })
+    // books.forEach(function(Book){
+    //     console.log("Book # " + (books.indexOf(Book) + 1));
+    //     console.log("Title: " + Book.title);
+    //     console.log("Author: " + Book.author.firstName + " " + Book.author.lastName);
+    // })
 
     /**
      * Bonus:
@@ -130,13 +130,38 @@
      *   `showBookInfo` function.
      */
 
-    function createBook(title, author) {
-        let authorFirstName = author.substring()
-        let authorLastName = author [1]
-        let bookObject = {bookTitle: title, bookAuthor: {firstName: authorFirstName, lastName: authorLastName}}
-        return console.log(bookObject)
+    function createBook (title, author) {
+        let splitAuthor = author.split(" ")
+        let book = {
+            title: title,
+            author: {
+                firstName: splitAuthor[0],
+                lastName: splitAuthor[1]
+            }
+        };
+        return book;
     };
-    createBook("The Leviathan", "Thomas Hobbes")
+
+    let booksVersionTwo = [];
+    booksVersionTwo.push(createBook("To Kill a Mockingbird", "Harper Lee"));
+    booksVersionTwo.unshift(createBook("Project Hail Mary", "Andy Weir"));
+    booksVersionTwo.unshift(createBook("Moby Dick", "Herman Melville"));
+    booksVersionTwo.unshift(createBook("The Prince", "Niccolo Machiavelli"));
+    booksVersionTwo.unshift(createBook("The Leviathan", "Thomas Hobbes"));
+
+
+    booksVersionTwo.forEach(function(book){
+        console.log("This is book number " + (booksVersionTwo.indexOf(book) + 1));
+        console.log(showBookInfo(book));
+    });
+
+    function showBookInfo(obj){
+        console.log("The books name is " + obj.title);
+        console.log("The books author is " + obj.author.firstName + " " + obj.author.lastName);
+    };
+    booksVersionTwo.forEach(function(book){
+        showBookInfo(book);
+    });
 
     // // Object practice
     //
