@@ -2,7 +2,7 @@
     "use strict";
 
     // create a circle object
-    var circle = {
+    const circle = {
         radius: 3,
 
         getArea: function () {
