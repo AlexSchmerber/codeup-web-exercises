@@ -30,7 +30,7 @@
      */
 
     person.sayHello = function() {
-        console.log("Hello from " + person.firstName + " " + person.lastName + "!");
+        console.log("Hello from " + this.firstName + " " + this.lastName + "!");
     }
     person.sayHello();
 
@@ -113,11 +113,11 @@
      *      ...
      */
 
-    // books.forEach(function(Book){
-    //     console.log("Book # " + (books.indexOf(Book) + 1));
-    //     console.log("Title: " + Book.title);
-    //     console.log("Author: " + Book.author.firstName + " " + Book.author.lastName);
-    // })
+    books.forEach(function(Book){
+        console.log("Book # " + (books.indexOf(Book) + 1));
+        console.log("Title: " + Book.title);
+        console.log("Author: " + Book.author.firstName + " " + Book.author.lastName);
+    })
 
     /**
      * Bonus:
