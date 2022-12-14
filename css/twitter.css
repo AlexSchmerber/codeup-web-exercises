@@ -1,3 +1,9 @@
+/*
+First display individual link elements as inline blocks
+For each nav item ^
+
+
+*/
 :root {
     --main-bg:#E6ECF0;
     --link-color: #3B94D9;
@@ -70,13 +76,13 @@ a {
     background: var(--light-bg);
 }
 .profile-details {
-    float: top;
-    width: calc(25% - .5em);
+    float: left;
+    width: calc(25% - 1em);
     margin: 0em .5em;
 }
 .timeline {
-    float: top;
-    width: calc(50% - .5em);
+    float: left;
+    width: calc(50% - 1em);
     margin: 0em .5em;
 }
 .media {
@@ -92,12 +98,12 @@ a {
     margin-top: 1.33em;
 }
 .media-body {
-    float: top;
+    float: left;
     width: calc(100% - 50px);
 }
 .who-to-follow {
-    float: top;
-    width: calc(25% - .5em);
+    float: left;
+    width: calc(25% - 1em);
     margin: 0em .5em;
 }
 .btn {
