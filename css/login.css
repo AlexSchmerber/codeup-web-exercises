@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    --my-border-color: green;
 }
 
 body, html {
@@ -42,7 +43,6 @@ fieldset {
     /* It should have a separation of .5em from elements on top of it and below it*/
     padding: .5em 0em;
 }
-
 .form-label {
     /* The text of a label must be bold */
     font-weight: bold;
@@ -60,10 +60,10 @@ fieldset {
     color: white;
     font-weight: bold;
     /* The border of this element should be 1px, and its color should be light grey */
-    border: 1px lightgrey;
+    border: 1px lightgrey solid;
+    /*border: 5px var(--my-border-color) solid; references the set var*/
     background-color: #0fb784;
 }
-
 .form-control {
     /* There must be 4px on top of the text and below the text of an input with this class */
     padding: 4px 0;
@@ -72,6 +72,5 @@ fieldset {
     /* You'll need to use the `calc` function to make the width of this element match the width of the button */
     width: calc(100% - 5px);
     /* HINT: Examples are available at: https://glitch.com/~input-button-width */
+
 }
-
-
