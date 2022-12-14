@@ -5,9 +5,17 @@
 <!-- There are different kinds of metas-->
     <title>Welcome</title>
     <link rel="stylesheet" href="css/style.css">
+<!--    rel preconnect used for when you use an href to link to another webpages origin so it can prep the origin-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
 </head>
 <body>
     <style>
+        /*astrisk takes all elements*/
+        * {
+            font-family: Tangerine, Serif;
+        }
         /*.fancy-header {*/
         /*    color: red;*/
         /*}*/
@@ -17,15 +25,16 @@
         }
         .fancy-header {
             text-decoration: underline;
+            color: violet;
         }
         body {
             background-color: #c9b6dc;
-            font-family: Arial;
-        }
-        #mission_statements {
             background-image: url("img/harry_styles.jpeg");
-            background-position: bottom;
+            background-position-x: 200px;
+            background-position-y: 100px;
+            background-repeat: no-repeat;
         }
+
         li {
             color: white;
             list-style: square;
@@ -33,6 +42,9 @@
         td, tr {
             padding: 20px;
             font-size: 14px;
+        }
+        a:active {
+            color: darkblue;
         }
         a:hover {
             color: pink;
@@ -43,10 +55,9 @@
 
     </style>
     <header id="top">
-        <h1 class="fancy-header">Welcome to Veridian Dynamics!</h1>
+        <h1 class="fancy-header">Welcome to <strong class="veridian">Veridian</strong> Dynamics!</h1>
         <p>At Veridian Dynamics, <strong>we</strong> solve <em>your</em> problems with <em><strong>technology.</strong></em></p>
     </header>
-    <hr>
     <main>
         <section id="mission_statements">
             <h2 class="fancy-header">Core Values</h2>
@@ -68,7 +79,6 @@
                 <li>Increase Business by 30%</li>
             </ul>
         </section>
-        <hr>
         <section id="vision_images">
             <h2 class="fancy-header">Company Vision</h2>
             <table>
