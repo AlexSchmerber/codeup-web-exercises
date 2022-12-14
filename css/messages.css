@@ -5,3 +5,12 @@ body, html {
     margin: 0;
     font-family: Arial, Ubuntu, sans-serif;
 }
+.message {
+
+}
+.message-info {
+     background-color: #c6d7f7;
+}
+.message-success {
+    background-color: #c9ead2;
+}
