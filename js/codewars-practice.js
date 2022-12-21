@@ -28,7 +28,7 @@
         return friendList;
     }
 
-    // Function to return true for 4 or 6 numbers
+    // Function to return true for 4 or 6 numbered pin
     function validatePIN(pin) {
         return /^(\d{4}|\d{6})$/.test(pin)
     }
@@ -47,4 +47,12 @@
         }
     }
 
+    // Function returns true for numbers that have a square root whole number
+    function isSquare(n) {
+        return Math.sqrt(n) % 1 === 0;
+    }
+    //First attempt
+    function isSquare(n) {
+        return Math.sqrt(n) % 1 === 0;
+    }
 });
