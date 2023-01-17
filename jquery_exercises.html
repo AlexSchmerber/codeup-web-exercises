@@ -3,37 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>jQuery Exercises</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            /* Putting font poppins it is a very beautiful font also if you dont have installed it on your system it might not show so you need to import it from *google fonts* */
-            font-family: 'Poppins';
-        }
+<!--    <style>-->
+<!--        * {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--            box-sizing: border-box;-->
+<!--            /* Putting font poppins it is a very beautiful font also if you dont have installed it on your system it might not show so you need to import it from *google fonts* */-->
+<!--            font-family: 'Poppins';-->
+<!--        }-->
 
-        /* Now here we are just styling the background and centering it to the middle */
+<!--        /* Now here we are just styling the background and centering it to the middle */-->
 
-        html,
-        body {
-            width: 100%;
-            height: 100%;
-            background: #f1f1f1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+<!--        html,-->
+<!--        body {-->
+<!--            width: 100%;-->
+<!--            height: 100%;-->
+<!--            background: #f1f1f1;-->
+<!--            display: flex;-->
+<!--            align-items: center;-->
+<!--            justify-content: center;-->
+<!--        }-->
 
-        p {
-            font-size: 10rem;
-            text-shadow: 0 0 0 10px;
-        }
-    </style>
+<!--        p {-->
+<!--            font-size: 10rem;-->
+<!--            text-shadow: 0 0 0 10px;-->
+<!--        }-->
+<!--    </style>-->
 </head>
 <body>
 <div id="container">
     <h1 class="codeup" id="head">Selectors</h1>
     <div>
+        <p> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius, velit. </p>
         <ul class="codeup" id="list">
             <li class="list-item">Item 1</li>
             <li class="list-item">Item 2</li>
@@ -49,9 +50,24 @@
 <script>
     // alert(`The contents of the list include: ${$('#list').text()}`
     // $('.codeup').css('border', '1px solid red')
-    $('li').css('font-size', '20px')
-    let body = $('h1', 'p', 'li')
-    alert(`The contents of the list include: ${$('h1').text()}`)
+    // $('li').css('font-size', '20px')
+    // let body = $('h1', 'p', 'li')
+    // $('h1, p, li').css('background-color', 'yellow');
+    // alert(`The contents of the list include: ${$('h1').text()}`)
+
+    $('h1').click(function() {
+        $(this).css('background-color', 'violet')
+    });
+    $('p').dblclick(function () {
+        $(this).css('font-size', '18px')
+    });
+    $('li').hover(function () {
+        $(this).css('color', 'red')
+    }, function () {
+        $(this).css('color', 'black')
+    });
+
+
 
     // let confetti = {
     //     maxCount: 1000,		//set max confetti count
