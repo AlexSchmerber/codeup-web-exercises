@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery FAQ</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<container>
+    <h3>Ten Must Visit National Parks</h3>
+    <button type="button" class="park-shower">Show Parks Information</button>
+    <dl>
+            <dt>Yosemite</dt>
+            <dd>Yosemite stands out for its multitude of amazing waterfalls and also includes many hiking trails and campsites for park goers.</dd>
+
+            <dt>Yellowstone</dt>
+            <dd>The worlds first national park, Yellowstone makes a name for itself with its 2.2 million acres of unique natural attractions and biodiversity.</dd>
+
+            <dt>Glacier National Park</dt>
+            <dd>Most known for its scenic water filled valleys that lay under the beautiful mountain-scape, this National Park includes 2 mountain ranges and over 700 lakes.</dd>
+
+            <dt>Grand Canyon</dt>
+            <dd>Known for its grandiose view, this National Parks beauty must be viewed in person to truly understand its magnificent scope.</dd>
+
+            <dt>Zion National Park</dt>
+            <dd>One of the best National Parks for thrill-seekers, Zions attractions include a 1,500-foot staircase up a mountain path, suitably named "Angels Landing".</dd>
+
+            <dt>Grand Teton</dt>
+            <dd>Offering 200 miles of trails that wind down prairies, lakes, and the Parks most notable sight, the Grand Teton snow-capped mountain range.</dd>
+
+            <dt>Bryce Canyon</dt>
+            <dd>Another Canyon thats wonders were shaped by the ever changing natural forces of erosion, like the Grand Canyon, Bryce Canyon is adorned with Hoodoos which are these wondrous irregularly shaped rock structures.</dd>
+
+            <dt>Rocky Mountains</dt>
+            <dd>One of the most convenient National Parks, the Rockies stand roughly 70 miles from Denver making them one of the most accessible natural beauty to frequent.</dd>
+
+            <dt>Arches</dt>
+            <dd>77,000 acres of Utah's oddly shaped sandstone formations that provide unique views to hikers and climbers.</dd>
+
+            <dt>Smoky Mountains</dt>
+            <dd>This mountain range provides plenty of opportunities to view North Carolina and Tennessee's beautiful landscapes and wildlife.</dd>
+        </dl>
+    <p id="reference">From US News Travel <a target="_blank" href="https://travel.usnews.com/rankings/best-national-parks-in-the-usa/">https://travel.usnews.com/rankings/best-national-parks-in-the-usa/</a></p>
+</container>
+
+<style>
+    .invisible {
+        display: none;
+        /*visibility: hidden;*/
+    }
+    body {
+        font-family: Damascus, 'sans-serif';
+    }
+</style>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(function () {
+        $('#reference').addClass('ps-2 m-2')
+        $('.park-shower').addClass('ps-2 pt-1 m-2')
+        $('body').addClass('bg-light ')
+        $('container').addClass('container bg-light p-2')
+        $('dl').addClass('bg-light')
+        $('h3').addClass('text-center bg-secondary pt-4 p-2 fs-1 text-white ')
+        $('dt').addClass('border-bottom fs-3 bg-light p-2 ps-4')
+        $('dd').addClass('invisible text-dark p-2 ps-4 border border-dark bg-white mx-2')
+
+        $('.park-shower').click(function (event) {
+            event.preventDefault();
+            $('dt').toggleClass('border-bottom')
+            $('dd').toggleClass('invisible')
+            $('h3').toggleClass('fs-1')
+        });
+        $('dt').click(function (event) {
+            event.preventDefault();
+            $(this).css('background-color', 'yellow');
+        })
+    });
+
+</script>
+</body>
+</html>
