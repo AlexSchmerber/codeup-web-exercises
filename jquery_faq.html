@@ -116,6 +116,9 @@
             y = z;
             $('#pic1').css('background-image', x);
             $('#pic2').css('background-image', y);
+            //let imgDiv1 = $(this).prev();
+            //let imgDiv2 = $(this).parent().prev().children().first();
+            //swapImages(imgDiv1, imgDiv2)
         }
         if(randomNum === 2){
             let x = $('#pic2').css('background-image');
@@ -125,6 +128,9 @@
             y = z;
             $('#pic2').css('background-image', x);
             $('#pic3').css('background-image', y);
+            //let imgDiv1 = undefined;
+            // let imgDiv2 =undefined;
+            //if(Math.random)
         }
     });
     $('#btn3').click(function () {
@@ -135,7 +141,12 @@
         y = z;
         $('#pic2').css('background-image', x);
         $('#pic3').css('background-image', y);
+
+        //let imgDiv1 = $(this).prev();
+        //let imgDiv2 = $(this).parent().prev().children().first();
+        //swapImages(imgDiv1, imgDiv2)
     });
+
 
 
     $(document).ready(function () {
