@@ -17,29 +17,178 @@
 </head>
 <body>
 
-<h1>My First Mapbox Map!</h1>
+<h1 class="text-center bg-light py-2">My First Mapbox Map!</h1>
 
 <!-- The HTML element that serves as the Mapbox container -->
-<container style="width: 90%;" class="d-flex mx-auto">
-    <div id='map'></div>
+<container class="container">
+    <div class="text-center">
+        <label style="font-size: 16px;" for="zoom_select">Change Zoom</label>
+        <select  id="zoom-select"  style="font-size: 16px; padding: 2px 12px; margin-bottom: 20px;" class="d-flex mx-auto" id="zoom_select" style="height: 40px; width: 180px" class="form-select">
+            <option id="zoom_option1" value="5">Zoom 5</option>
+            <option id="zoom_option2" selected value="10">Zoom 10</option>
+            <option id="zoom_option3" value="15">Zoom 15</option>
+        </select>
+        <label for="search_location">Search for a Location</label>
+        <input id="location_search_box" style="width: 500px;" id="search_location" type="text" class="form-control d-flex mx-auto text-center mt-2" placeholder="Location" aria-label="Location" aria-describedby="basic-addon1">
+        <button class="my-2" id="btn_search">Search</button>
+        <button class="my-2" id="btn_clear">Search</button>
+    </div>
+    <div style="width: 90%;" class="d-flex mx-auto">
+        <div id='map'></div>
+    </div>
 </container>
+
+<script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
 
 <!-- Mapbox JS -->
 <script src='https://api.mapbox.com/mapbox-gl-js/v2.12.0/mapbox-gl.js'></script>
 
+<link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css" type="text/css">
+<script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
 <script src="js/keys.js"></script>
 <!-- Mapbox Geocoder Util Methods -->
 <script src="js/mapbox-geocoder-utils.js"></script>
 
 <!-- Custom JS -->
 <script>
+    // TO MAKE THE MAP APPEAR YOU MUST
+    // ADD YOUR ACCESS TOKEN FROM
+    // https://account.mapbox.com
     mapboxgl.accessToken = MAPBOX_API_KEY;
-    let map = new mapboxgl.Map({
+    const map = new mapboxgl.Map({
         container: 'map',
-        style: 'mapbox://styles/mapbox/streets-v9',
-        zoom: 10,
-        center: [-98.4916, 29.4252]
+// Choose from Mapbox's core styles, or make your own style with Mapbox Studio
+        style: 'mapbox://styles/mapbox/streets-v12',
+        center: [-98.4916, 29.4252],
+        zoom: 9
     });
+
+    /* Given a query in the form "lng, lat" or "lat, lng"
+    * returns the matching geographic coordinate(s)
+    * as search results in carmen geojson format,
+    * https://github.com/mapbox/carmen/blob/master/carmen-geojson.md */
+    const coordinatesGeocoder = function (query) {
+// Match anything which looks like
+// decimal degrees coordinate pair.
+        const matches = query.match(
+            /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+        );
+        if (!matches) {
+            return null;
+        }
+
+        function coordinateFeature(lng, lat) {
+            return {
+                center: [lng, lat],
+                geometry: {
+                    type: 'Point',
+                    coordinates: [lng, lat]
+                },
+                place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                place_type: ['coordinate'],
+                properties: {},
+                type: 'Feature'
+            };
+        }
+
+        const coord1 = Number(matches[1]);
+        const coord2 = Number(matches[2]);
+        const geocodes = [];
+
+        if (coord1 < -90 || coord1 > 90) {
+// must be lng, lat
+            geocodes.push(coordinateFeature(coord1, coord2));
+        }
+
+        if (coord2 < -90 || coord2 > 90) {
+// must be lat, lng
+            geocodes.push(coordinateFeature(coord2, coord1));
+        }
+
+        if (geocodes.length === 0) {
+// else could be either lng, lat or lat, lng
+            geocodes.push(coordinateFeature(coord1, coord2));
+            geocodes.push(coordinateFeature(coord2, coord1));
+        }
+
+        return geocodes;
+    };
+
+    // Add the control to the map.
+    map.addControl(
+        new MapboxGeocoder({
+            accessToken: mapboxgl.accessToken,
+            localGeocoder: coordinatesGeocoder,
+            zoom: 4,
+            placeholder: 'Try: -40, 170',
+            mapboxgl: mapboxgl,
+            reverseGeocode: true
+        })
+    );
+    //---------------------
+
+
+    // mapboxgl.accessToken = MAPBOX_API_KEY;
+    // let map = new mapboxgl.Map({
+    //     container: 'map',
+    //     style: 'mapbox://styles/mapbox/streets-v9',
+    //     zoom: 10,
+    //     center: [-98.4916, 29.4252]
+    // });
+
+
+    let searchValue
+
+    // $('#btn_search').click(function () {
+    //     searchValue = $('#location_search_box')[0].value
+    //     console.log(searchValue);
+    //     geocode(searchValue, MAPBOX_API_KEY)
+    //         .then(function(result) {
+    //             map = new mapboxgl.Map({
+    //                 container: 'map',
+    //                 style: 'mapbox://styles/mapbox/streets-v9',
+    //                 zoom: 10,
+    //                 center: [result]
+    //             });
+    //         }).catch(function(error) {
+    //         console.log("Boom");
+    //     });
+    // });
+
+
+
+    // $('#btn_search').click(function () {
+    //     console.log(searchValue);
+        // geocode(searchValue, MAPBOX_API_KEY)
+        //     .then(function(result) {
+        //         const marker = new mapboxgl
+        //             .Marker();
+        //         marker.setLngLat(result);
+        //         marker.addTo(map);
+        //         let popup = new mapboxgl.Popup();
+        //         popup.setHTML(`<img style="width: 100%; height: 100px;" src=${restaurant.picture}><h3 class="text-center">${restaurant.name}</h3><p>${restaurant.description}</p>`);
+        //         marker.setPopup(popup);
+        //         // map.setCenter(result);
+        //         // map.setZoom(20);
+        //     }).catch(function(error) {
+        //     console.log("Boom");
+        // });
+    // });
+
+
+    $('#zoom-select').change(function (event) {
+        map.setZoom(this.value)
+    });
+
+
+    // function zoomChange() {
+    //     map.setZoom(value)
+    // };
+
+    // $('.zoom_select').change(function () {
+    //     // map.setZoom($(this).value)
+    //     console.log('hello');
+    // });
 
     // the  geocode method from mapbox-geocoder-utils.js
 
@@ -52,13 +201,16 @@
     let myFavoriteRestaurants = [
         {
             name:'Mr Gattis',
-            description: 'A delightful pizza paradise full of nostalgia and entertainment for all (Zaaaaa)'
+            description: 'A delightful pizza paradise full of nostalgia and entertainment for all (Zaaaaa)',
+            picture: 'img/gattis_image.jpeg'
         },{
         name:'La Fogata',
-        description: 'If Tex-Mex is your thing, La Fogata is also your thing (Grade A fajitas)'
+        description: 'If Tex-Mex is your thing, La Fogata is also your thing (Grade A fajitas)',
+        picture: 'img/lafogata_image.jpeg'
         },{
         name: 'Botika',
-        description: 'Sushi and other Asian styled foods that will tantalize your tastebuds'
+        description: 'Sushi and other Asian styled foods that will tantalize your tastebuds',
+        picture: 'img/botika_pic.jpeg'
         }
     ]
 
@@ -70,7 +222,7 @@
                 marker.setLngLat(result);
                 marker.addTo(map);
                 let popup = new mapboxgl.Popup();
-                popup.setHTML(`<h3>${restaurant.name}</h3><p>${restaurant.description}</p>`);
+                popup.setHTML(`<img style="width: 100%; height: 100px;" src=${restaurant.picture}><h3 class="text-center">${restaurant.name}</h3><p>${restaurant.description}</p>`);
                 marker.setPopup(popup);
                 // map.setCenter(result);
                 // map.setZoom(20);
@@ -129,6 +281,7 @@
     // reverseGeocode({lng:-98.393114, lat: 29.507893}, MAPBOX_API_KEY).then(function (results) {
     //     console.log(results);
     // });
+
 
 </script>
 </body>
