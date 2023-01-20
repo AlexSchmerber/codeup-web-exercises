@@ -20,7 +20,7 @@
             console.log("Data returned from server:");
             console.log(data);
             for (const datum of data) {
-                $('#posts').append(`<h3>${datum.title}</h3><p>${datum.content}</p><div>${datum.categories} ${datum.date}</div>`)
+                $('#posts').append(`<h3 class="mt-5 mb-2">${datum.title}</h3><p>${datum.content}</p><div>${datum.categories} ${datum.date}</div>`)
             }
         });
         $('*').addClass('bg-light')
