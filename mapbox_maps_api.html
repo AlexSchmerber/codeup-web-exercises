@@ -123,6 +123,10 @@
         })
     );
 
+    $('#zoom-select').change(function (event) {
+        map.setZoom(this.value)
+    });
+
     let myFavoriteRestaurants = [
         {
             name:'Mr Gattis',
