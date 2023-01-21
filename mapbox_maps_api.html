@@ -20,21 +20,18 @@
 <h1 class="text-center bg-light py-2">My First Mapbox Map!</h1>
 
 <!-- The HTML element that serves as the Mapbox container -->
-<container class="container">
-    <div class="text-center">
-        <label style="font-size: 16px;" for="zoom_select">Change Zoom</label>
-        <select  id="zoom-select"  style="font-size: 16px; padding: 2px 12px; margin-bottom: 20px;" class="d-flex mx-auto" id="zoom_select" style="height: 40px; width: 180px" class="form-select">
-            <option id="zoom_option1" value="5">Zoom 5</option>
-            <option id="zoom_option2" selected value="10">Zoom 10</option>
-            <option id="zoom_option3" value="15">Zoom 15</option>
-        </select>
-        <label for="search_location">Search for a Location</label>
-        <input id="location_search_box" style="width: 500px;" id="search_location" type="text" class="form-control d-flex mx-auto text-center mt-2" placeholder="Location" aria-label="Location" aria-describedby="basic-addon1">
-        <button class="my-2" id="btn_search">Search</button>
-        <button class="my-2" id="btn_clear">Search</button>
-    </div>
-    <div style="width: 90%;" class="d-flex mx-auto">
-        <div id='map'></div>
+<container class="container d-flex justify-content-center ">
+    <div style="width: 90%; position: absolute; z-index: 1;" class="">
+        <div id='map'>
+            <select  id="zoom-select"  style="top: 60px; right: 10px;  font-size: 16px; position: absolute; z-index: 2; padding: 2px 12px; margin-bottom: 20px;" class="z-1" id="zoom_select" style="height: 40px; width: 180px" class="form-select">
+                <option id="zoom_option0" selected disabled>Change Zoom</option>
+                <option id="zoom_option1" value="5">Zoom 5</option>
+                <option id="zoom_option2"  value="10">Zoom 10</option>
+                <option id="zoom_option3" value="15">Zoom 15</option>
+            </select>
+            <button class="pe-2" style="top: 10px; left: 20px;  font-size: 12px; position: absolute; z-index: 2; width: 100px; height: 30px; margin-bottom: 20px;" type="button" id="remove_pins">Remove Pins</button>
+            <button class="pe-4" style="top: 10px; left: 130px;  font-size: 12px; position: absolute; z-index: 2; width: 100px; height: 30px; margin-bottom: 20px;" type="button" id="return_pins">Return Pins</button>
+        </div>
     </div>
 </container>
 
@@ -125,78 +122,6 @@
             reverseGeocode: true
         })
     );
-    //---------------------
-
-
-    // mapboxgl.accessToken = MAPBOX_API_KEY;
-    // let map = new mapboxgl.Map({
-    //     container: 'map',
-    //     style: 'mapbox://styles/mapbox/streets-v9',
-    //     zoom: 10,
-    //     center: [-98.4916, 29.4252]
-    // });
-
-
-    let searchValue
-
-    // $('#btn_search').click(function () {
-    //     searchValue = $('#location_search_box')[0].value
-    //     console.log(searchValue);
-    //     geocode(searchValue, MAPBOX_API_KEY)
-    //         .then(function(result) {
-    //             map = new mapboxgl.Map({
-    //                 container: 'map',
-    //                 style: 'mapbox://styles/mapbox/streets-v9',
-    //                 zoom: 10,
-    //                 center: [result]
-    //             });
-    //         }).catch(function(error) {
-    //         console.log("Boom");
-    //     });
-    // });
-
-
-
-    // $('#btn_search').click(function () {
-    //     console.log(searchValue);
-        // geocode(searchValue, MAPBOX_API_KEY)
-        //     .then(function(result) {
-        //         const marker = new mapboxgl
-        //             .Marker();
-        //         marker.setLngLat(result);
-        //         marker.addTo(map);
-        //         let popup = new mapboxgl.Popup();
-        //         popup.setHTML(`<img style="width: 100%; height: 100px;" src=${restaurant.picture}><h3 class="text-center">${restaurant.name}</h3><p>${restaurant.description}</p>`);
-        //         marker.setPopup(popup);
-        //         // map.setCenter(result);
-        //         // map.setZoom(20);
-        //     }).catch(function(error) {
-        //     console.log("Boom");
-        // });
-    // });
-
-
-    $('#zoom-select').change(function (event) {
-        map.setZoom(this.value)
-    });
-
-
-    // function zoomChange() {
-    //     map.setZoom(value)
-    // };
-
-    // $('.zoom_select').change(function () {
-    //     // map.setZoom($(this).value)
-    //     console.log('hello');
-    // });
-
-    // the  geocode method from mapbox-geocoder-utils.js
-
-
-    //alamo
-    // let marker = new mapboxgl.Marker().setLngLat([-98.4946, 29.4252]).addTo(map);
-
-    //find out where North Star mall is and make a marker popup for it
 
     let myFavoriteRestaurants = [
         {
@@ -221,8 +146,15 @@
                     .Marker();
                 marker.setLngLat(result);
                 marker.addTo(map);
+                $('#remove_pins').click(function () {
+                    marker.remove()
+                });
+                $('#return_pins').click(function () {
+                    marker.addTo(map);
+                });
+
                 let popup = new mapboxgl.Popup();
-                popup.setHTML(`<img style="width: 100%; height: 100px;" src=${restaurant.picture}><h3 class="text-center">${restaurant.name}</h3><p>${restaurant.description}</p>`);
+                popup.setHTML(`<container><img style="width: 100%; height: 100px;" src=${restaurant.picture}><h3 class="text-center">${restaurant.name}</h3><p>${restaurant.description}</p></container>`);
                 marker.setPopup(popup);
                 // map.setCenter(result);
                 // map.setZoom(20);
@@ -231,57 +163,29 @@
         });
     });
 
-    // myFavoriteRestaurants.forEach(function (restaurant) {
-    // function pinThatAddress(address) {
-    //     geocode(address, MAPBOX_API_KEY)
-    //         .then(function(result) {
-    //         const marker = new mapboxgl
-    //             .Marker();
-    //         marker.setLngLat(result);
-    //         marker.addTo(map);
-    //         let popup = new mapboxgl.Popup();
-    //         popup.setHTML(`<h1>${address}</h1>`);
-    //             marker.setPopup(popup);
-    //         // map.setCenter(result);
-    //         // map.setZoom(20);
-    //     }).catch(function(error) {
-    //         console.log("Boom");
-    //     });
-    // }
-
-        // function pinThatAddress(address) {
-        //     geocode(address, MAPBOX_API_KEY)
-        //         .then(function (result) {
-        //             const marker = new mapboxgl
-        //                 .Marker();
-        //             marker.setLngLat(result);
-        //             marker.addTo(map);
-        //             let popup = new mapboxgl.Popup();
-        //             popup.setHTML(`<h1>${address}</h1>`);
-        //             marker.setPopup(popup);
-        //             // map.setCenter(result);
-        //             // map.setZoom(20);
-        //         }).catch(function (error) {
-        //         console.log("Boom");
-        //     });
-        // }
-
-
-
-    // ^ catch logs message if error pinning address
-    // pinThatAddress('Botika');
-    // pinThatAddress('');
-    // pinThatAddress('afafgrv');
-    //north star
-
-    // popup
-
+        function pinThatAddress(address) {
+            geocode(address, MAPBOX_API_KEY)
+                .then(function (result) {
+                    const marker = new mapboxgl
+                        .Marker();
+                    marker.setLngLat(result);
+                    marker.addTo(map);
+                    let popup = new mapboxgl.Popup();
+                    popup.setHTML(`<h1>${address}</h1>`);
+                    marker.setPopup(popup);
+                    // map.setCenter(result);
+                    // map.setZoom(20);
+                }).catch(function (error) {
+                console.log("Boom");
+            });
+        }
 
     // logs Name of place from cords
     // reverseGeocode({lng:-98.393114, lat: 29.507893}, MAPBOX_API_KEY).then(function (results) {
     //     console.log(results);
     // });
 
+    // let marker = new mapboxgl.Marker().setLngLat([-98.4946, 29.4252]).addTo(map);
 
 </script>
 </body>
