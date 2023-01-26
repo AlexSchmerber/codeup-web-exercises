@@ -85,7 +85,7 @@ let languagesList = users.reduce((languagesString, user) => {
 languagesList = languagesList.split(' ')
 console.log(languagesList);
 let uniqueLanguages = languagesList.reduce((languagesString, language) => {
-    if(languagesString.includes(language)){
+    if(languagesString.includes(language + ' ')){
         return languagesString;
     } else if (languagesString === ''){
         return languagesString + language
