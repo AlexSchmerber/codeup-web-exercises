@@ -36,10 +36,11 @@ const users = [
     }
 ];
 
-let userLanguages = users.filter(function(user) {
+let userLanguagesLength = users.filter(function(user) {
    return user.languages.length >= 3
 });
-console.log(userLanguages);
+
+console.log(userLanguagesLength);
 
 let userEmails = users.map(function(user) {
     return user.email
@@ -64,10 +65,33 @@ const userNames = users.reduce((namesString, name) => {
     if (namesString === ''){
         return 'Your instructors are: ' + namesString + upperCaseFirst(name.name);
     } else if(name.name === users[users.length - 1].name){
-        return namesString + ", and " + upperCaseFirst(name.name);
+        return namesString + ", and " + upperCaseFirst(name.name) + '.';
     } else {
         return namesString + ", " + upperCaseFirst(name.name);
     }
 }, '');
 
 console.log(userNames);
+
+
+
+let languagesList = users.reduce((languagesString, user) => {
+    if (languagesString === ''){
+        return languagesString + user.languages.join(' ')
+    } else {
+        return languagesString + ' ' + user.languages.join(' ')
+    }
+}, '');
+languagesList = languagesList.split(' ')
+console.log(languagesList);
+let uniqueLanguages = languagesList.reduce((languagesString, language) => {
+    if(languagesString.includes(language)){
+        return languagesString;
+    } else if (languagesString === ''){
+        return languagesString + language
+    } else{
+        return languagesString + ' ' + language
+    }
+}, '')
+uniqueLanguages = uniqueLanguages.split(' ')
+console.log(uniqueLanguages);
